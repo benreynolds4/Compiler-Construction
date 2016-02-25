@@ -1,0 +1,36 @@
+%option noyywrap
+%{
+	#include <stdio.h>
+	#include <stdlib.h>
+
+	#define END -1
+	#define WORD 1
+	#define INT 2
+	#define STRING 3
+	#define LPAR 4
+	#define RPAR 5
+	#define SEMI 6
+	#define ERROR 7
+%}
+
+letter  	[a-zA-Z]
+digit 		[0-9]+
+word 		{letter}({letter})*
+string  	\".*\"
+lpar    	[(]
+rpar		[)]
+semicolon	[;]
+error 		[?+_+-+|+,+.]
+whitespace  [\n+\t+ ]
+
+%%
+end 			{return END;}
+{word} 			{return WORD; }
+{digit}   		{return INT; }
+{string}		{return STRING;}
+{lpar}			{return LPAR;}
+{rpar}			{return RPAR;}
+{semicolon}		{return SEMI;}
+{error}			{return ERROR;}
+{whitespace}	{return 0;}
+%%

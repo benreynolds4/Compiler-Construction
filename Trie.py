@@ -1,3 +1,7 @@
+# Ben Reynolds 13309656
+# Task1 - Assignment 1
+
+from Node import Node
 class Trie:
 	def __init__(self):
 		self.Nodes = []
@@ -7,7 +11,8 @@ class Trie:
 
 	def checkLetter (self, flag, character):
 		# Take a flag and a character, If flag is true trie is dynamic, else its static. 
-		# If character exists return true else return false unless it's dynamic in which case add it.
+		# If character exists return true else return false unless it's dynamic in which
+        # case add it.
 		# True for Dynamic  - False for Static
 		
 		if flag == True:
@@ -30,10 +35,9 @@ class Trie:
 					return True
 			return False
 
-
 	def checkWordExists(self, word):
-		# check if word in tree if it is return ID, id dynamic and there but not accepting make accepting and return
-		# that ID else return negative id. 
+		# check if word in tree if it is return ID, id dynamic and there but not accepting
+		# make accepting and return that ID else return negative id.
 		self.setRoot()
 		dynamincFlag = True
 		if word[:1].isupper():		#Check first letter in word.
@@ -49,16 +53,18 @@ class Trie:
 					break
 				else:
 					lettersExist = False
-					
 
 		if lettersExist and not dynamincFlag:
 			self.currentNode.setAccepting()
 			return self.currentNode.ID
 		elif lettersExist and self.currentNode.accepting == True:
 			return self.currentNode.ID
+		else:
+			return -1
 
 	def proccessWord(self, word):
-		#Method takes a word and tries to add said word using method one, and two to check its ID. 
+        #Method takes a word and tries to add said word using method one,
+        #  and two to check its ID.
 		self.setRoot()
 		dynamincFlag = True
 		if word[:1].isupper():		#Check first letter in word.
@@ -88,41 +94,3 @@ class Trie:
 			for nextNode in node.nextNodes:
 				print nextNode.getCharacter()
 			print "\n"
-
-
-# Node Class allows you to create each node for the Trie. 
-# A Node stores an ID, A character, an array of Nodes it's connected to and also whether the node is accepting or not.
-class Node:
-	def __init__(self, character, ID):
-		self.character = character
-		self.ID = ID
-		self.nextNodes = []
-		self.accepting = False
-
-	def getCharacter(self):
-		return self.character
-	
-	def setAccepting(self):
-		self.accepting = True
-
-	def addNextNode(self, node):
-		self.nextNodes.append(node)
-
-	def getConnectedNodes(self):
-		return self.nextNodes
-
-
-#TESTING 
-
-trie = Trie()
-trie.proccessWord("private")
-trie.proccessWord("public")
-trie.proccessWord("protected")
-trie.proccessWord("static")
-trie.proccessWord("primary")
-trie.proccessWord("integer")
-trie.proccessWord("exception")
-trie.proccessWord("try")
-
-
-

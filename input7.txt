@@ -1,1 +1,1 @@
-888 is quite ok but 88888 is "not ok"
+888 is quite ok but 65536 is "not ok"
